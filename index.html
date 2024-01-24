@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;500&family=Roboto&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <title>Weather App</title>
+</head>
+
+<body>
+  <main>
+    <div class="left">
+      <label for="search"></label>
+      <input type="search" class="search" placeholder="Search..." />
+      <div class="currentWeather">
+        <h1 class="city"></h1>
+        <p class="country"></p>
+        <h2 class="temp"></h2>
+        <p class="type"></p>
+        <div class="cards">
+          <div class="feelsLike card">
+            <p class="title">
+              <i class="fa-solid fa-temperature-empty"></i>FEELS LIKE
+            </p>
+            <p class="feelsLikeTemp value"></p>
+          </div>
+          <div class="precipitation card">
+            <p class="title">
+              <img id="raindrop" src="./images/drop.png" alt="raindrop icon"/>PRECIPITATION
+            </p>
+            <p class="precipitationValue value"></p>
+          </div>
+          <div class="visibility card">
+            <p class="title"><i class="fa-regular fa-eye"></i>VISIBILITY</p>
+            <p class="visibilityValue value"></p>
+          </div>
+          <div class="humidity card">
+            <p class="title">
+              <img id="humidity" src="./images/humidity.png" alt="humidity icon"/>HUMIDITY
+            </p>
+            <div class="humidityValue value"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="hourly">
+        <p class="title"><i class="fa-regular fa-clock"></i>HOURLY FORECAST</p>
+        <div class="scrollable"></div>
+      </div>
+      <div class="threeDay"></div>
+    </div>
+  </main>
+  <script src="https://kit.fontawesome.com/f9007cbfa6.js" crossorigin="anonymous"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
