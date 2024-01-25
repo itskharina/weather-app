@@ -7,11 +7,15 @@ const visibility = document.querySelector('.visibilityValue');
 const humidity = document.querySelector('.humidityValue');
 const search = document.querySelector('input');
 const country = document.querySelector('.country');
+const hourly = document.querySelector('.scrollable');
+const changeTemp = document.querySelector('button');
+let isCelsius = true;
+let lastData = null;
 
 // Sets default to London
 window.onload = async function () {
-  const data = await fetchWeather('London');
-  renderData(data);
+  lastData = await fetchWeather('London');
+  renderData(lastData);
 };
 
 // Fetching the API data
@@ -33,13 +37,19 @@ async function fetchWeather(city) {
 function renderData(data) {
   city.textContent = data.location.name;
   country.textContent = data.location.country;
-  currentTemp.textContent = `${data.current.temp_c}°C`;
-  feelsLikeTemp.textContent = `${data.current.feelslike_c}°C`;
+  if (isCelsius) {
+    currentTemp.textContent = `${data.current.temp_c}°C`;
+    feelsLikeTemp.textContent = `${data.current.feelslike_c}°C`;
+  } else {
+    currentTemp.textContent = `${data.current.temp_f}°F`;
+    feelsLikeTemp.textContent = `${data.current.feelslike_f}°F`;
+  }
   precipitation.textContent = `${data.current.precip_mm} mm`;
   visibility.textContent = `${data.current.vis_miles} mi`;
   humidity.textContent = `${data.current.humidity}%`;
   type.textContent = data.current.condition.text;
   changePicture(data);
+  hourlyForecast(data);
 }
 
 // Changing background picture based on the weather condition
@@ -48,10 +58,6 @@ function changePicture(data) {
   const condition = data.current.condition.text;
   const lowercase = condition.toLowerCase();
   switch (true) {
-    case lowercase.includes('clear'):
-      img.style.backgroundImage = "url('../images/clear.jpg')";
-      break;
-
     case lowercase.includes('cloud') || lowercase.includes('overcast'):
       img.style.backgroundImage = "url('../images/cloudy.jpg')";
       break;
@@ -62,13 +68,56 @@ function changePicture(data) {
 
     case lowercase.includes('sun'):
       img.style.backgroundImage = "url('../images/sunny.jpg')";
+      break;
+
+    default:
+      img.style.backgroundImage = "url('../images/clearold.jpg')";
+      break;
   }
 }
 
+function hourlyForecast(data) {
+  hourly.innerHTML = '';
+  const hours = data.forecast.forecastday[0].hour;
+  console.log(hours);
+  hours.forEach((hour) => {
+    const div = document.createElement('div');
+    div.className = 'hour-card';
+
+    const title = document.createElement('p');
+    title.className = 'hour-title';
+    title.textContent = hour.time.split(' ')[1];
+
+    const hourTemp = document.createElement('p');
+    hourTemp.className = 'hour-temp';
+
+    if (isCelsius) {
+      hourTemp.textContent = `${hour.temp_c}°C`;
+    } else {
+      hourTemp.textContent = `${hour.temp_f}°C`;
+    }
+
+    const img = document.createElement('img');
+    img.className = 'hour-image';
+    img.src = hour.condition.icon;
+
+    div.append(title, hourTemp, img);
+    hourly.append(div);
+  });
+}
+
 // Allows data to be rendered on page when enter is pressed
-search.addEventListener('keydown', async function (e) {
+search.addEventListener('keydown', async (e) => {
   if (e.key === 'Enter' && e.target.value !== '') {
-    const data = await fetchWeather(e.target.value);
-    renderData(data);
+    lastData = await fetchWeather(e.target.value);
+    renderData(lastData);
+  }
+});
+
+changeTemp.addEventListener('click', () => {
+  isCelsius = !isCelsius;
+  changeTemp.textContent = isCelsius ? 'Change to °F' : 'Change to °C';
+  if (lastData) {
+    renderData(lastData);
   }
 });
