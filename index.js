@@ -1,4 +1,4 @@
-const city = document.querySelector('.city');
+const place = document.querySelector('.city');
 const currentTemp = document.querySelector('.temp');
 const type = document.querySelector('.type');
 const feelsLikeTemp = document.querySelector('.feelsLikeTemp');
@@ -9,8 +9,10 @@ const search = document.querySelector('input');
 const country = document.querySelector('.country');
 const hourly = document.querySelector('.scrollable');
 const changeTemp = document.querySelector('button');
+const daysContainer = document.querySelector('.days-container');
+
 let isCelsius = true;
-let lastData = null;
+let lastData = null; // Needed so we can easily toggle the temp units without having to do another api call
 
 // Sets default to London
 window.onload = async function () {
@@ -22,9 +24,14 @@ window.onload = async function () {
 async function fetchWeather(city) {
   try {
     const response = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=062b70f345cf4437be0160958242301&q=${city}`,
+      `http://api.weatherapi.com/v1/forecast.json?key=062b70f345cf4437be0160958242301&q=${city}&days=3`,
       { mode: 'cors' },
     );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const weather = await response.json();
     console.log(weather);
     return weather;
@@ -35,7 +42,7 @@ async function fetchWeather(city) {
 
 // Rendering data on page
 function renderData(data) {
-  city.textContent = data.location.name;
+  place.textContent = data.location.name;
   country.textContent = data.location.country;
   if (isCelsius) {
     currentTemp.textContent = `${data.current.temp_c}°C`;
@@ -50,6 +57,7 @@ function renderData(data) {
   type.textContent = data.current.condition.text;
   changePicture(data);
   hourlyForecast(data);
+  threeDayForecast(data);
 }
 
 // Changing background picture based on the weather condition
@@ -76,17 +84,17 @@ function changePicture(data) {
   }
 }
 
+// Creates and renders hourly forecast on page
 function hourlyForecast(data) {
   hourly.innerHTML = '';
   const hours = data.forecast.forecastday[0].hour;
-  console.log(hours);
   hours.forEach((hour) => {
-    const div = document.createElement('div');
-    div.className = 'hour-card';
+    const hourCard = document.createElement('div');
+    hourCard.className = 'hour-card';
 
-    const title = document.createElement('p');
-    title.className = 'hour-title';
-    title.textContent = hour.time.split(' ')[1];
+    const hourTime = document.createElement('p');
+    hourTime.className = 'hour-time';
+    hourTime.textContent = hour.time.split(' ')[1];
 
     const hourTemp = document.createElement('p');
     hourTemp.className = 'hour-temp';
@@ -94,15 +102,71 @@ function hourlyForecast(data) {
     if (isCelsius) {
       hourTemp.textContent = `${hour.temp_c}°C`;
     } else {
-      hourTemp.textContent = `${hour.temp_f}°C`;
+      hourTemp.textContent = `${hour.temp_f}°F`;
     }
 
-    const img = document.createElement('img');
-    img.className = 'hour-image';
-    img.src = hour.condition.icon;
+    const hourImg = document.createElement('img');
+    hourImg.className = 'hour-image';
+    hourImg.src = hour.condition.icon;
 
-    div.append(title, hourTemp, img);
-    hourly.append(div);
+    hourCard.append(hourTime, hourTemp, hourImg);
+    hourly.append(hourCard);
+  });
+}
+
+// Creates and renders three day forecast on page
+function threeDayForecast(data) {
+  daysContainer.innerHTML = '';
+
+  const days = data.forecast.forecastday;
+  console.log(days);
+  days.forEach((day) => {
+    const dayCard = document.createElement('div');
+    dayCard.className = 'day-card';
+
+    const date = document.createElement('p');
+    date.className = 'day-date';
+    const dayOfWeek = new Date(`${day.date}`).toLocaleString('en-us', {
+      weekday: 'long',
+    });
+    date.textContent = dayOfWeek.slice(0, 3);
+
+    const dayTemp = document.createElement('p');
+    dayTemp.className = 'day-temp';
+
+    dayTemp.textContent = isCelsius
+      ? `${day.day.avgtemp_c}°C`
+      : `${day.day.avgtemp_f}°F`;
+
+    const dayImg = document.createElement('img');
+    dayImg.className = 'day-image';
+    dayImg.src = day.day.condition.icon;
+
+    const highTemp = document.createElement('p');
+    highTemp.className = 'high';
+    highTemp.textContent = isCelsius
+      ? `${day.day.maxtemp_c}°C `
+      : `${day.day.maxtemp_f}°F `;
+
+    const lowTemp = document.createElement('p');
+    lowTemp.className = 'low';
+    lowTemp.textContent = isCelsius
+      ? `${day.day.mintemp_c}°C `
+      : `${day.day.mintemp_f}°F `;
+
+    const highAndLow = document.createElement('div');
+    highAndLow.className = 'high-and-low';
+
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+
+    const chanceOfRain = document.createElement('p');
+    chanceOfRain.className = 'rain';
+    chanceOfRain.textContent = `Chance of rain: ${day.day.daily_chance_of_rain}%`;
+
+    highAndLow.append(lowTemp, bar, highTemp);
+    dayCard.append(date, dayTemp, highAndLow, chanceOfRain, dayImg);
+    daysContainer.append(dayCard);
   });
 }
 
@@ -114,6 +178,7 @@ search.addEventListener('keydown', async (e) => {
   }
 });
 
+// Switches between celsius and fahrenheit
 changeTemp.addEventListener('click', () => {
   isCelsius = !isCelsius;
   changeTemp.textContent = isCelsius ? 'Change to °F' : 'Change to °C';

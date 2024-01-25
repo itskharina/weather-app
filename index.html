@@ -12,10 +12,9 @@
   <link rel="stylesheet" href="./css/style.css" />
   <title>Weather App</title>
 </head>
-
 <body>
   <main>
-    <div class="left">
+    <section class="left">
       <label for="search"></label>
       <input type="search" class="search" placeholder="Search..." />
       <div class="currentWeather">
@@ -23,7 +22,7 @@
         <p class="country"></p>
         <h2 class="temp"></h2>
         <p class="type"></p>
-        <button class="metrics">Change to °F</button>
+        <button>Change to °F</button>
         <div class="cards">
           <div class="feelsLike card">
             <p class="title">
@@ -49,15 +48,25 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
     <div class="right">
+    <section>
       <div class="hourly">
         <p class="title"><i class="fa-regular fa-clock"></i>HOURLY FORECAST</p>
         <p class="underline"></p>
         <div class="scrollable"></div>
       </div>
-      <div class="threeDay"></div>
+    </section>
+    <section>
+      <div class="threeDay">
+        <p class="title"><i class="fa-regular fa-calendar"></i>3-DAY FORECAST</p>
+        <p class="underline"></p>
+        <div class="days-container"></div>
+        <div class="uv"></div>
+        <div class="wind"></div>
     </div>
+    </section>
   </main>
   <script src="https://kit.fontawesome.com/f9007cbfa6.js" crossorigin="anonymous"></script>
   <script src="index.js"></script>
