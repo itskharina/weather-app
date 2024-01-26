@@ -1,15 +1,21 @@
 const place = document.querySelector('.city');
 const currentTemp = document.querySelector('.temp');
 const type = document.querySelector('.type');
-const feelsLikeTemp = document.querySelector('.feelsLikeTemp');
-const precipitation = document.querySelector('.precipitationValue');
-const visibility = document.querySelector('.visibilityValue');
-const humidity = document.querySelector('.humidityValue');
+const feelsLikeTemp = document.querySelector('.feels-like-temp');
+const precipitation = document.querySelector('.precip-value');
+const visibility = document.querySelector('.vis-value');
+const humidity = document.querySelector('.humidity-value');
 const search = document.querySelector('input');
 const country = document.querySelector('.country');
 const hourly = document.querySelector('.scrollable');
 const changeTemp = document.querySelector('button');
 const daysContainer = document.querySelector('.days-container');
+const uv = document.querySelector('.uv-value');
+const gust = document.querySelector('.wind-gust');
+const wind = document.querySelector('.wind-value');
+const range = document.querySelector('.range');
+const sunrise = document.querySelector('.sunrise-value');
+const sunset = document.querySelector('.sunset-value');
 
 let isCelsius = true;
 let lastData = null; // Needed so we can easily toggle the temp units without having to do another api call
@@ -55,6 +61,24 @@ function renderData(data) {
   visibility.textContent = `${data.current.vis_miles} mi`;
   humidity.textContent = `${data.current.humidity}%`;
   type.textContent = data.current.condition.text;
+  uv.textContent = data.current.uv;
+  wind.textContent = `${data.current.wind_mph.toFixed(1)}`; // Makes it so number always rounds to 1 decimal place
+  gust.textContent = `${data.current.gust_mph.toFixed(1)}`;
+  sunrise.textContent = data.forecast.forecastday[0].astro.sunrise;
+  sunset.textContent = data.forecast.forecastday[0].astro.sunset;
+
+  if (data.current.uv < 3) {
+    range.textContent = 'Low';
+  } else if (data.current.uv < 6) {
+    range.textContent = 'Moderate';
+  } else if (data.current.uv < 8) {
+    range.textContent = 'High';
+  } else if (data.current.uv < 11) {
+    range.textContent = 'Very high';
+  } else {
+    range.textContent = 'Extreme';
+  }
+
   changePicture(data);
   hourlyForecast(data);
   threeDayForecast(data);
@@ -79,7 +103,7 @@ function changePicture(data) {
       break;
 
     default:
-      img.style.backgroundImage = "url('../images/clearold.jpg')";
+      img.style.backgroundImage = "url('../images/clear.jpg')";
       break;
   }
 }
@@ -119,7 +143,6 @@ function threeDayForecast(data) {
   daysContainer.innerHTML = '';
 
   const days = data.forecast.forecastday;
-  console.log(days);
   days.forEach((day) => {
     const dayCard = document.createElement('div');
     dayCard.className = 'day-card';

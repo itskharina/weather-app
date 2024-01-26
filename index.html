@@ -13,61 +13,101 @@
   <title>Weather App</title>
 </head>
 <body>
-  <main>
-    <section class="left">
-      <label for="search"></label>
-      <input type="search" class="search" placeholder="Search..." />
-      <div class="currentWeather">
-        <h1 class="city"></h1>
-        <p class="country"></p>
-        <h2 class="temp"></h2>
-        <p class="type"></p>
-        <button>Change to °F</button>
-        <div class="cards">
-          <div class="feelsLike card">
-            <p class="title">
-              <i class="fa-solid fa-temperature-empty"></i>FEELS LIKE
-            </p>
-            <p class="feelsLikeTemp value"></p>
-          </div>
-          <div class="precipitation card">
-            <p class="title">
-              <img id="raindrop" src="./images/drop.png" alt="raindrop icon"/>PRECIPITATION
-            </p>
-            <p class="precipitationValue value"></p>
-          </div>
-          <div class="visibility card">
-            <p class="title"><i class="fa-regular fa-eye"></i>VISIBILITY</p>
-            <p class="visibilityValue value"></p>
-          </div>
-          <div class="humidity card">
-            <p class="title">
-              <img id="humidity" src="./images/humidity.png" alt="humidity icon"/>HUMIDITY
-            </p>
-            <div class="humidityValue value"></div>
+  <div class="main-container">
+    <main>
+      <section class="left">
+        <label for="search"></label>
+        <input type="search" class="search" placeholder="Search..." />
+        <div class="currentWeather">
+          <h1 class="city"></h1>
+          <p class="country"></p>
+          <h2 class="temp"></h2>
+          <p class="type"></p>
+          <button>Change to °F</button>
+          <div class="cards">
+            <div class="feels-like card">
+              <p class="title">
+                <i class="fa-solid fa-temperature-empty"></i>FEELS LIKE
+              </p>
+              <p class="feels-like-temp value"></p>
+            </div>
+            <div class="precipitation card">
+              <p class="title">
+                <img src="./images/drop.png" alt="raindrop icon"/>PRECIPITATION
+              </p>
+              <p class="precip-value value"></p>
+            </div>
+            <div class="visibility card">
+              <p class="title"><i class="fa-regular fa-eye"></i>VISIBILITY</p>
+              <p class="vis-value value"></p>
+            </div>
+            <div class="humidity card">
+              <p class="title">
+                <img src="./images/humidity.png" alt="humidity icon"/>HUMIDITY
+              </p>
+              <div class="humidity-value value"></div>
+            </div>
           </div>
         </div>
+      </section>
+  
+      <div class="right">
+        <section>
+          <div class="hourly">
+            <p class="title"><i class="fa-regular fa-clock"></i>HOURLY FORECAST</p>
+            <div class="underline"></div>
+            <div class="scrollable"></div>
+          </div>
+        </section>
+        <section>
+          <div class="threeDay">
+            <p class="title"><i class="fa-regular fa-calendar"></i>3-DAY FORECAST</p>
+            <div class="underline"></div>
+            <div class="days-container"></div>
+          </div>
+        </section>
+        <section>
+          <div class="container">
+            <div class="uv-wind">
+              <div class="uv">
+                <p class="title"><i class="fa-regular fa-sun"></i>UV INDEX</p>
+                <p class="uv-value"></p>
+                <p class="range"></p>
+                <p class="suncream">Remember to always wear suncream!</p>
+              </div>
+              <div class="border-left"></div>
+              <div class="wind">
+                <p class="title"><i class="fa-solid fa-wind"></i>WIND</p>
+                <div class="flex">
+                  <p class="wind-value"></p>
+                  <p class="wind-units"><span class="mph">MPH</span> <br> <span>WIND</span></p>
+                </div>
+                <div class="flex">
+                  <p class="wind-gust"></p>
+                  <p class="wind-units"><span class="mph">MPH</span> <br> <span>GUST</span></p>
+                </div>
+              </div>        
+            </div>
+            <div class="sun">
+              <div class="sunrise">
+                <p class="title"><img src="./images/sunrise.svg" alt="sunrise icon"/>SUNRISE</p>
+                <p class="sunrise-value"></p>
+              </div>
+              <div class="sunset">
+                <p class="title"><img src="./images/sunset.svg" alt="sunset icon"/>SUNSET</p>
+                <p class="sunset-value"></p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
-
-    <div class="right">
-    <section>
-      <div class="hourly">
-        <p class="title"><i class="fa-regular fa-clock"></i>HOURLY FORECAST</p>
-        <p class="underline"></p>
-        <div class="scrollable"></div>
-      </div>
-    </section>
-    <section>
-      <div class="threeDay">
-        <p class="title"><i class="fa-regular fa-calendar"></i>3-DAY FORECAST</p>
-        <p class="underline"></p>
-        <div class="days-container"></div>
-        <div class="uv"></div>
-        <div class="wind"></div>
-    </div>
-    </section>
-  </main>
+    </main>
+    <footer class="footer">
+      <p class="credits">
+        Recreation of <a href="https://dribbble.com/shots/22808487-Weather-Forecast-Dark-theme">this design</a>  by <a href="//dribbble.com/hana295">Hana</a> on Dribbble.
+      </p>
+    </footer>
+  </div>
   <script src="https://kit.fontawesome.com/f9007cbfa6.js" crossorigin="anonymous"></script>
   <script src="index.js"></script>
 </body>

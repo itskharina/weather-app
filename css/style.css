@@ -1,25 +1,38 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #2D2F36;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "main" "footer";
 }
 
 main {
-  background-color: #2D2F36;
-  min-height: 100vh;
+  height: 865px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-areas: "left left right right right" "left left right right right" "left left right right right" "left left right right right" "left left right right right";
+  grid-template-areas: "left left right right right";
+  grid-area: main;
 }
 
 .left {
-  margin: 15px;
-  border-radius: 20px;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 15px 15px 30px 15px;
+  border-radius: 20px;
+  color: white;
   grid-area: left;
   background-repeat: no-repeat;
   background-size: cover;
@@ -32,7 +45,7 @@ main {
   text-align: center;
 }
 .left h1, .left h2 {
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
 }
 .left button {
@@ -54,7 +67,7 @@ main {
   margin-top: 30px;
   margin-bottom: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-auto-rows: auto;
   gap: 10px;
 }
@@ -64,11 +77,6 @@ main {
   margin-top: 10px;
   background-color: rgba(27, 26, 26, 0.7);
   padding: 20px 20px 20px 25px;
-}
-.left .cards .card .value {
-  font-size: 3rem;
-  color: white;
-  margin-top: 20px;
 }
 .left input {
   color: white;
@@ -85,7 +93,8 @@ main {
   background-position: 10px;
   background-color: #34333D;
 }
-.left #raindrop, .left #humidity {
+
+img {
   width: 25px;
 }
 
@@ -98,12 +107,18 @@ main {
   color: #96a1ac;
 }
 
+.value, .right .container .uv-value, .right .container .wind-value, .right .container .wind-gust {
+  font-size: 3rem;
+  color: white;
+  margin-top: 20px;
+}
+
 .right {
   grid-area: right;
   background: #2D2F36;
 }
 .right .hourly, .right .threeDay {
-  margin: 15px;
+  margin: 15px 15px 10px 15px;
   width: 96%;
   background-color: #1A1E27;
   padding: 20px;
@@ -112,6 +127,9 @@ main {
 .right .hourly .underline, .right .threeDay .underline {
   margin: 10px auto;
   border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+.right .threeDay {
+  margin: 10px 15px;
 }
 .right ::-webkit-scrollbar {
   height: 6px;
@@ -133,14 +151,14 @@ main {
   margin-top: 15px;
 }
 .right .scrollable .hour-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
   padding: 10px;
   margin-bottom: 15px;
   border: 2px solid #58575c;
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100px;
   flex-shrink: 0;
 }
@@ -160,11 +178,11 @@ main {
   margin-top: 15px;
 }
 .right .days-container .day-card {
-  padding: 10px;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px;
+  color: white;
   gap: 6px;
   border: 2px solid #58575c;
   border-radius: 20px;
@@ -189,4 +207,63 @@ main {
   align-items: center;
   gap: 15px;
   font-size: 1.2rem;
+}
+.right .container {
+  color: white;
+  margin: 10px 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.right .container .flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.right .container .uv-wind, .right .container .sun {
+  display: flex;
+  width: 96%;
+  background-color: #1A1E27;
+  padding: 20px;
+  border-radius: 20px;
+  justify-content: space-around;
+}
+.right .container .border-left {
+  border-left: 2px solid rgba(255, 255, 255, 0.25);
+}
+.right .container .uv-value, .right .container .wind-value, .right .container .wind-gust {
+  font-size: 2rem;
+}
+.right .container .wind-value, .right .container .wind-gust {
+  width: 70px;
+}
+.right .container .wind-units {
+  line-height: 1.2rem;
+  text-align: center;
+  margin-top: 20px;
+}
+.right .container .wind-units .mph {
+  color: #96a1ac;
+}
+.right .container .range {
+  font-size: 1.2rem;
+}
+.right .container .suncream {
+  font-size: 0.8rem;
+  margin-top: 20px;
+}
+
+footer {
+  box-sizing: border-box;
+  color: white;
+  grid-area: footer;
+  background-color: #1A1E27;
+  text-align: center;
+  grid-area: footer;
+  padding: 10px 0;
+}
+footer a {
+  color: white;
 }/*# sourceMappingURL=style.css.map */
