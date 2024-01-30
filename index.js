@@ -103,6 +103,10 @@ function changePicture(data) {
       img.style.backgroundImage = "url('./images/sunny.jpg')";
       break;
 
+    case lowercase.includes('mist'):
+      img.style.backgroundImage = "url('./images/mist.jpg')";
+      break;
+
     default:
       img.style.backgroundImage = "url('./images/clear.jpg')";
       break;
