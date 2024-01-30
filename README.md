@@ -30,6 +30,6 @@ Users should be able to:
 
 ## Attribution
 
-[Sunrise icon](https://iconscout.com/icons/sunrise) and [sunset icon](https://iconscout.com/icons/sunset) by [Feather Icons](https://iconscout.com/contributors/feathericons) on (IconScout)[https://iconscout.com]
-[Nighttime icon](https://www.freepik.com/icon/desert_1360330), [daytime icon](https://www.freepik.com/icon/desert_1360329#fromView=resource_detail&position=62), and [UV icon](https://www.freepik.com/icon/sun_4637381#fromView=search&term=uv&track=ais&page=1&position=2) by Darius Dan
+- [Sunrise icon](https://iconscout.com/icons/sunrise) and [sunset icon](https://iconscout.com/icons/sunset) by [Feather Icons](https://iconscout.com/contributors/feathericons) on [IconScout](https://iconscout.com)
+- [Nighttime icon](https://www.freepik.com/icon/desert_1360330), [daytime icon](https://www.freepik.com/icon/desert_1360329#fromView=resource_detail&position=62), and [UV icon](https://www.freepik.com/icon/sun_4637381#fromView=search&term=uv&track=ais&page=1&position=2) by Darius Dan
 
