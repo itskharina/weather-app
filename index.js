@@ -30,7 +30,7 @@ window.onload = async function () {
 async function fetchWeather(city) {
   try {
     const response = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=062b70f345cf4437be0160958242301&q=${city}&days=3`,
+      `https://api.weatherapi.com/v1/forecast.json?key=062b70f345cf4437be0160958242301&q=${city}&days=3`,
       { mode: 'cors' },
     );
 
@@ -43,6 +43,7 @@ async function fetchWeather(city) {
     return weather;
   } catch (error) {
     console.error('An error occurred:', error);
+    return null;
   }
 }
 
