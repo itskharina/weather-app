@@ -86,7 +86,8 @@ main {
         margin-top: 30px;
         margin-bottom: 20px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        grid-template-columns: 1fr 1fr;
+        // grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         grid-auto-rows: auto;
         gap: 10px;
 
@@ -254,16 +255,24 @@ img {
 
         .uv-wind, .sun {
             display: flex;
+            align-items: center;
             width: 96%;
             background-color: $mainColour;
             padding: 20px;
             border-radius: 20px;
             justify-content: space-around;
+            height: 286px;
+        }
+
+        .sun {
+            margin-right: 7px;
         }
 
         .border-left {
+            height: 100%;
             border-left: 2px solid rgba(255,255,255,.25);
-
+            padding: 10px;
+;
         }
 
         .uv-value {
@@ -294,6 +303,21 @@ img {
             font-size: 0.8rem;
             margin-top: 20px;
         }
+
+        .sunset, .sunrise  {
+            @include flex(column);
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+
+            .sunrise-value {
+                margin-bottom: 10px;
+            }
+
+            .pics {
+                width: 100px;
+            }
+        }
     }
 }
 
@@ -313,5 +337,9 @@ footer {
     }
 }
 
-
+// <a href="https://www.freepik.com/icon/sunset_9595809#fromView=resource_detail&position=9">Icon by vectaicon</a>
+// <a href="https://www.freepik.com/icon/sunrise_9595807">Icon by vectaicon</a>
 // <a href="https://iconscout.com/icons/sunrise" class="text-underline font-size-sm" target="_blank">Sunrise</a> by <a href="https://iconscout.com/contributors/feathericons" class="text-underline font-size-sm">Feather Icons</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
+// <a href="https://iconscout.com/icons/sunset" class="text-underline font-size-sm" target="_blank">Sunset</a> by <a href="https://iconscout.com/contributors/feathericons" class="text-underline font-size-sm">Feather Icons</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
+// <a href="https://www.freepik.com/icon/desert_1360330">Icon by Darius Dan</a>
+// <a href="https://www.freepik.com/icon/desert_1360329#fromView=resource_detail&position=62">Icon by Darius Dan</a>
