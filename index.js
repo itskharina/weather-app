@@ -92,19 +92,19 @@ function changePicture(data) {
   const lowercase = condition.toLowerCase();
   switch (true) {
     case lowercase.includes('cloud') || lowercase.includes('overcast'):
-      img.style.backgroundImage = "url('images/cloudy.jpg')";
+      img.style.backgroundImage = "url('./images/cloudy.jpg')";
       break;
 
     case lowercase.includes('rain'):
-      img.style.backgroundImage = "url('images/rain.jpg')";
+      img.style.backgroundImage = "url('./images/rain.jpg')";
       break;
 
     case lowercase.includes('sun'):
-      img.style.backgroundImage = "url('images/sunny.jpg')";
+      img.style.backgroundImage = "url('./images/sunny.jpg')";
       break;
 
     default:
-      img.style.backgroundImage = "url('images/clear.jpg')";
+      img.style.backgroundImage = "url('./images/clear.jpg')";
       break;
   }
 }
