@@ -245,7 +245,7 @@ img {
         }
     }
 
-    .uv-wind, .sun {
+    .uv-wind {
         display: flex;
         align-items: center;
         width: 100%;
@@ -257,6 +257,7 @@ img {
         background-size: 2px 90%;
         background-repeat: no-repeat;
         background-position: center center;
+        
 
         .flex-uv {
             margin-top: 30px;
@@ -264,6 +265,11 @@ img {
             justify-content: center;
             gap: 10px;
         }
+    }
+
+    .sun {
+        @extend .uv-wind;
+        justify-content: space-evenly;
     }
 
     .container {
