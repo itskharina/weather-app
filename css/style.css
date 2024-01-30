@@ -229,6 +229,9 @@ img {
   justify-content: center;
   gap: 10px;
 }
+.right .sun {
+  justify-content: space-evenly;
+}
 .right .container {
   color: white;
   justify-content: center;
@@ -377,7 +380,7 @@ footer a {
   .right .uv-wind .title + .flex, .right .sun .title + .flex {
     margin: 10px 0;
   }
-  .right .uv-wind .uv-value, .right .uv-wind .container .wind-value, .right .container .uv-wind .wind-value, .right .uv-wind .container .wind-gust, .right .container .uv-wind .wind-gust, .right .sun .uv-value, .right .sun .container .wind-value, .right .container .sun .wind-value, .right .sun .container .wind-gust, .right .container .sun .wind-gust {
+  .right .uv-wind .uv-value, .right .uv-wind .container .wind-value, .right .container .uv-wind .wind-value, .right .sun .container .wind-value, .right .container .sun .wind-value, .right .uv-wind .container .wind-gust, .right .container .uv-wind .wind-gust, .right .sun .container .wind-gust, .right .container .sun .wind-gust, .right .sun .uv-value {
     margin-top: 0;
     font-size: 1.5rem;
   }
