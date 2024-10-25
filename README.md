@@ -10,13 +10,14 @@
 
 ### The challenge
 
-- Created a Weather App as part of [The Odin Project](https://www.theodinproject.com)
+- Created a responsive Weather App as part of [The Odin Project](https://www.theodinproject.com)
 - Live demo: https://itskharina.github.io/weather-app/
 - Clone of [this website design](https://dribbble.com/shots/22808487-Weather-Forecast-Dark-theme) by [Hana](https://dribbble.com/hana295) on Dribbble
 
 Users should be able to:
 
 - Check the weather of any city in the world.
+- View the optimal layout for the website depending on their device's screen size
 - Switch the temperature units between celsius and fahrenheit.
 - View additional data such as sunrise and sunset time, UV, and more.
 
