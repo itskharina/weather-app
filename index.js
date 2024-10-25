@@ -30,7 +30,7 @@ window.onload = async function () {
 async function fetchWeather(city) {
   try {
     const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=062b70f345cf4437be0160958242301&q=${city}&days=3`,
+      `https://api.weatherapi.com/v1/forecast.json?key=5c6f19426ebb4f45936151747242510&q=${city}&days=3`,
       { mode: 'cors' },
     );
 
